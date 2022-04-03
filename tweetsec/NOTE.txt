@@ -1,0 +1,35 @@
+
+# Unfortunately I failed to connect my credentials to twitter to be able to test sending
+and receiving tweets (They never confirmed my email :( )
+
+# What I did was receive the words "tweets" that the user entered through 
+the console and accordingly returned the security of the key
+
+What I would do to connect Twitter API if they had confirmed my email =>
+Posibble Instruction:
+
+0.- Install gem file in your terminal: 
+  gem install twitter
+
+1.- Signed up at https://apps.twitter.com/ and complete the information on the form
+
+2.- Wait for an agent to review and 
+  give you the approval request (I never got the message :( )
+
+3.- Fill in this your file.rb with your details:
+
+require 'twitter'
+
+client = Twitter::REST::Client.new do |config|
+  config.consumer_key        = "YOUR_CONSUMER_KEY"
+  config.consumer_secret     = "YOUR_CONSUMER_SECRET"
+  config.access_token        = "YOUR_ACCESS_TOKEN"
+  config.access_token_secret = "YOUR_ACCESS_SECRET"
+end
+
+4.- View your tweets
+# This method will return an array of Tweet objects that you can interact with it,
+tweets = client.user_timeline('rubyinside', count: 20) 
+tweets.each { |tweet| puts tweet.full_text }
+
+For more info: https://www.rubyguides.com/2016/04/twitter-api-from-ruby-tutorial/
