@@ -1,29 +1,28 @@
 # frozen_string_literal: true
 
-# require 'byebug' # primitive lib to use date module
+require 'byebug' # primitive lib to use date module
 require 'date' # primitive lib to use date module
 require_relative 'class/4_and_5_user_unemployed_class' # manual_file lib, contain user_unemployed class
 
 puts 'Bienvenido al Programa que calcula de Probabilidad de desempleado... '
 puts '... '
 puts '... '
-puts 'Introduzca su nombre y fecha de nacimiento indicando día, mes y año: '
-puts 'Edad: '
+print 'Edad: '
 user_age = gets.chomp.to_i
 
-puts('Estado Civil: teclee la letra s para soltero/ otra letra para casado')
+puts('Estado Civil - teclee la letra "s" para soltero/ otra letra para casado: ')
 user_martial_status = gets.chomp == 's' ? 'soltero' : 'casado' # conditioning the user by keyboard
 
-puts 'Cantidad de hijos: '
+print('Cantidad de hijos: ')
 user_number_of_children = gets.chomp.to_i
-puts 'Fecha de contratacion: '
-puts 'Día: '
+print 'Fecha de contratacion: '
+print 'Día: '
 user_hiring_day = gets.chomp.to_i
-puts 'Mes: '
+print 'Mes: '
 user_hiring_month = gets.chomp.to_i
-puts 'Año: '
+print 'Año: '
 user_hiring_year = gets.chomp.to_i
-puts 'Tiempo a calcular en meses: '
+print 'Tiempo a calcular en meses: '
 user_hiring_time = gets.chomp.to_i
 
 # Instantiate [current_user]object to access its methods and calculate the percentage
@@ -55,3 +54,12 @@ puts("1.- #{total_unemployed_probability}% de probabilidad de que la persona ren
 
 probability = current_user.new_customer(total_unemployed_probability)
 puts("2.- #{probability}")
+
+if unemployed_probability.first.sum.zero?
+  puts('Empleado con 0% de probabilidad')
+else
+  puts("3.- Cuenta con #{current_user.user_number_of_children} hijos,
+    #{user_martial_status if unemployed_probability.first[1] || unemployed_probability.first[2]},
+     de #{current_user.user_age} años y trabajando desde hace #{current_user.user_hiring_time} meses
+     , por lo que tiene #{total_unemployed_probability}% de probabilidad")
+end

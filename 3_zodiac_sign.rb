@@ -98,13 +98,13 @@ class CalculateDate
 end
 
 puts 'Introduzca su nombre y fecha de nacimiento indicando día, mes y año: '
-puts 'Nombre Completo: '
+print 'Nombre Completo: '
 current_user_total_name = gets.chomp
-puts 'Día: '
+print 'Día: '
 current_user_day = gets.chomp.to_i
-puts 'Mes: '
+print 'Mes: '
 current_user_month = gets.chomp.to_i
-puts 'Año: '
+print 'Año: '
 current_user_year = gets.chomp.to_i
 
 current_user =
