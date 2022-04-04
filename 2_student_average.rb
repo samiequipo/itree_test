@@ -31,13 +31,13 @@ while total_students != 0
   end
 end
 
-# instantiate a new object[current_list] sending all the notes contained in an 
+# instantiate a new object[current_list] sending all the notes contained in an
 # [note_list] array
 current_list = StudentAverage.new(note_list)
 
 # Calculate the average of all grades
 current_list_average = current_list.calculate_average_student
 
-puts('...') 
-puts('...') 
+puts('...')
+puts('...')
 puts("1.- La media de nota para la sección #{grade} es de: #{current_list_average} ")

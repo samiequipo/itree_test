@@ -1,20 +1,19 @@
 # frozen_string_literal: true
 
-require 'sequel'
-require 'wordnet'
-require 'byebug'
-require_relative 'character_type'
+require 'sequel' # bbdb lib depended by 'wordnet' lib
+require 'wordnet' # english dictionary lib
+require 'byebug' # debbugin lib
+require_relative 'character_type' # manual lib to make calculated
 
-# dictionary_wordnet[:twitter_word]
+puts 'Welcome to the TweetSec Password Strength Evaluator...'
+print('please enter your latest tweets: ')
 twitter_word = gets.chomp # params[twitter_word], asks the user for the strong password by keyboard
-ORIGINAL_WORD = twitter_word # ctte to not modify the value in the response
 length_word = twitter_word.length # length size of words strong password
 dictionary_wordnet = WordNet::Lexicon.new # params[dictionary_wordnet], initialize dictionary
 # dictionary_wordnet[:twitter_word]
 
-strong_word = ''
-reemplace_word = ''
-# word != '0' && word.to_i != 0
+strong_word = '' # params[strong_word], reemplaced twitter_word
+reemplace_word = '' # params[reemplace_word], reemplaced twitter_word
 
 # iterated words
 # %w[12password34 password1 goat m4]
@@ -41,7 +40,20 @@ if length_word > 1
   end
 end
 
+# create a new instanced object[result] to do word strength calculations
 result = CharacterType.new(twitter_word)
 
-puts 'Welcome to the TweetSec Password Strength Evaluator...'
-puts "Your original word #{ORIGINAL_WORD} was reemplaced by #{twitter_word}"
+# calls the functions and adds 1 for each character found
+strength_rating =
+  result.string_character + result.number_character +
+  result.blank_character + result.character_rarely
+
+# Multiply the number of characters in numbers found by the length of the transformed word
+strength_value = strength_rating * twitter_word.length
+total_result = result.responses_message(strength_value)
+
+puts '...'
+puts '...'
+puts "1.- Your original word was reemplaced by #{twitter_word}"
+puts "2.- Your strenght value is: #{strength_value}"
+puts "3.- Your response message is, #{total_result}"
